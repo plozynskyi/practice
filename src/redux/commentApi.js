@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { id } from "date-fns/esm/locale";
 
 const API_ENDPOINT = "/comments";
-const BASE_URL = "https://624dade777abd9e37c7c8930.mockapi.io";
+const BASE_URL = "https://6311dada19eb631f9d7a495d.mockapi.io";
 
 export const commentApi = createApi({
   reducerPath: "comments",
@@ -23,7 +23,15 @@ export const commentApi = createApi({
       }),
       invalidatesTags: ["Comments"],
     }),
+    addComment: builder.mutation({
+      query: (comment) => ({
+        url: API_ENDPOINT,
+        method: "POST",
+        body: comment,
+      }),
+      invalidatesTags: ["Comments"],
+    }),
   }),
 });
 
-export const { useGetCommentsQuery, useUpdateCommentMutation } = commentApi;
+export const { useGetCommentsQuery, useUpdateCommentMutation, useAddCommentMutation } = commentApi;
